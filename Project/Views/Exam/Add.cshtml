@@ -1,0 +1,46 @@
+﻿@{
+    Layout = "/Views/Shared/_ExamLayout.cshtml";
+}
+
+@model Exam
+<section class="vh-100">
+    <div class="container py-5 h-100">
+        <div class="row d-flex align-items-center justify-content-center h-100">
+            <div class="col-md-8 col-lg-7 col-xl-6">
+                <img src="https://play-lh.googleusercontent.com/mq0yDvakE4iM5sPKBA6e0v37Jtr8sim810bpXoC9hRPa196ZTY_YV50FOOOfuF0jrQ"
+                     class="img-fluid" alt="Phone image">
+            </div>
+            <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+<form  class="form" method="post">
+    <div class="form-group">
+        <label asp-for="Title" class="form-label">Title</label>
+        <input asp-for="Title" class="form-control">
+        <span class="text-danger" asp-validation-for="Title"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Instructor_ID" class="form-label"></label>
+        <span asp-validation-for="Instructor_ID"></span>
+        <select class="form-select" asp-for="Instructor_ID" asp-items="ViewBag.Instructors">
+            <option selected>Open this select menu</option>
+        </select>
+
+    </div>
+    <div class="form-group">
+        <label asp-for="Duration" class="form-label">Duration</label>
+        <input asp-for="Duration" class="form-control">
+        <span class="text-danger" asp-validation-for="Duration"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ExamDate" class="form-label">ExamDate</label>
+        <input asp-for="ExamDate" class="form-control">
+        <span class="text-danger" asp-validation-for="ExamDate"></span>
+    </div>
+
+
+
+                    <button type="submit" class="btn-outline-success" style="background-color: #45a049">Submit</button>
+</form>
+            </div>
+        </div>
+    </div>
+</section>

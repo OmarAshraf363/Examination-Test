@@ -1,0 +1,40 @@
+﻿@{
+    Layout = "/Views/Shared/_ExamLayout.cshtml";
+}
+
+@model Question
+@{
+    ViewData["Title"] = "Add";
+}
+
+<h1>Add new Question</h1>
+
+<form method="post">
+    <div class="mb-3">
+        <label asp-for="Head" class="form-label"></label>
+        <input asp-for="Head" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label asp-for="Body" class="form-label"></label>
+        <input asp-for="Body" class="form-control">
+    </div>
+   
+    <div class="mb-3">
+        <label asp-for="Answer" class="form-label"></label>
+        <input asp-for="Answer" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label asp-for="Instructor_ID" class="form-label"></label>
+        <select class="form-select" asp-for="Instructor_ID" asp-items="ViewBag.Instructors">
+            <option selected>Open this select menu</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Exam_ID" class="form-label"></label>
+        <select class="form-select" asp-for="Exam_ID" asp-items="ViewBag.Exams">
+            <option selected>Open this select menu</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

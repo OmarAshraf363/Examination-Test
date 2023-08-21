@@ -1,0 +1,17 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+@if (Context.Session.GetInt32("UserId") != null)
+{
+    <div>
+        <a href="/question/" class="btn btn-outline-primary ">Questions</a>
+        <a href="/Instructor/" class="btn btn-outline-primary ">Instructors</a>
+       
+    </div>
+}
+
+
+
+<link href="~/assets/css/style.css" rel="stylesheet" />

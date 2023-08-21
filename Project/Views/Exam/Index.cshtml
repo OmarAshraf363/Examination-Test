@@ -1,0 +1,50 @@
+﻿@{
+    Layout = "/Views/Shared/_ExamLayout.cshtml";
+}
+@model List<Exam>
+@{
+    ViewData["Title"] = "Index";
+    int index = 1;
+}
+
+<h1> View Exams</h1>
+<a href="/exam/Add" class="btn btn-outline-primary ">Add Exam</a>
+<a href="/question/" class="btn btn-outline-primary ">Questions</a>
+
+<table class="table table-info table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Exam Title </th>
+            <th scope="col"> Handiling </th>
+
+
+
+
+        </tr>
+    </thead>
+    @foreach (var i in Model)
+    {
+        <tbody>
+
+            <tr>
+                <th scope="row"> @(index++)</th>
+                <td>@i.Title</td>
+
+                <td>
+
+                    <a href="/exam/Delete/@i.ID" class="btn btn-outline-primary "> Delete</a>
+
+                </td>
+
+
+
+
+
+            </tr>
+
+        </tbody>
+    }
+</table>
+
+

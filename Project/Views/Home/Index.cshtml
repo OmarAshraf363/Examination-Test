@@ -1,0 +1,74 @@
+﻿
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+        padding: 20px;
+    }
+
+    .container {
+        height: 100%;
+    }
+
+    .row {
+        height: 100%;
+    }
+
+    .col-md-8 {
+        margin: auto;
+    }
+
+    img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 20px;
+    }
+
+    h1 {
+       
+        color: #333;
+    }
+</style>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+
+ @if (Context.Session.GetInt32("UserID") != null)
+{
+ 
+    @if (Context.Session.GetString("UserType") == "Instructor")
+    {
+          <div class="container py-5 h-100">
+        <div class="row d-flex align-items-center justify-content-center h-100">
+            <div class="col-md-8 col-lg-7 col-xl-6">
+                    <img src="https://examstrategist.com/wp-content/uploads/2021/01/Color-logo-no-background-1.png" alt="Logo">
+                    
+            </div>
+           
+        <div>
+            <h1>Welcome, @Context.Session.GetString("UserName")</h1>
+            <p>You are a good instructor. If you want to test your students, follow the next steps:</p>
+            <ol>
+                <li>Show instructor information:  <div> <a href="/Instructor/" class="btn btn-outline-primary ">Instructors</a> </div></li>
+                <li>Create an exam and questions:  <div>  <a href="/exam/" class="btn btn-outline-primary ">create exam</a> </div></li>
+                <li>Attend And Result of Students:  <div>  <a href="/student/" class="btn btn-outline-primary ">Student</a> </div></li>
+            </ol>
+        </div>
+            </div>
+        </div>
+       
+    }
+    else
+    {
+        <h1>welcom @Context.Session.GetString("UserName")</h1>
+        <a href="/Exam/result" class="btn btn-outline-primary ">Take Exam</a>
+    }
+    
+}
+
+
+
+

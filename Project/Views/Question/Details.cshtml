@@ -1,0 +1,35 @@
+﻿@{
+    Layout = "/Views/Shared/_ExamLayout.cshtml";
+}
+
+@model Question
+@{
+    ViewData["Title"] = "Details";
+    int index = 1;
+}
+
+<h1>Details</h1>
+<table class="table table-dark table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Instructor Name </th>
+            <th scope="col">Instructor Email </th>
+            <th scope="col">Curse Name </th>
+           
+           
+        </tr>
+    </thead>
+    <tbody>
+      
+        <tr>  <th scope="row"> Q.No[@Model.ID]</th>
+            <td>@Model.Instructor.Name</td>
+            <td>@Model.Instructor.Email</td>
+            <td>@Model.Instructor.Course</td>
+           
+          
+        </tr>
+       
+    </tbody>
+</table>
+

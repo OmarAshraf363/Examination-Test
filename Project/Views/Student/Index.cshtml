@@ -1,0 +1,64 @@
+﻿@{
+    Layout = "/Views/Shared/_StudentLayout.cshtml";
+}
+
+@model List<Student>
+@{
+    ViewData["Title"] = "Index";
+    int index = 1;
+}
+
+<h1>Students</h1>
+
+<a href="/Exam/Refreashall" class="btn btn-outline-primary ">Refreash All</a>
+<table class="table table-info table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Student Name </th>
+            <th scope="col">age </th>
+            <th scope="col">email </th>
+            <th scope="col">attend </th>
+            <th scope="col">Dgree </th>
+            <th scope="col">Handling </th>
+           
+          
+            
+
+
+
+
+
+        </tr>
+    </thead>
+
+    @foreach (var i in Model)
+    {
+        <tbody>
+
+            <tr>
+                <th scope="row"> @(index++)</th>
+                <td>@i.Name</td>
+                <td>@i.Age</td>
+                <td>@i.Email</td>
+               
+                <td>
+                    @i.IsAttend
+                </td>
+                <td>@i.Dgree</td>
+
+
+              <td>  <a href="/Student/Delete/@i.ID" class="btn btn-outline-primary ">Delete</a>
+
+                    <a href="/Exam/Refreash/@i.ID" class="btn btn-outline-primary ">Refreash</a>
+              </td>
+               
+
+
+            </tr>
+
+        </tbody>
+    }
+</table>
+
+

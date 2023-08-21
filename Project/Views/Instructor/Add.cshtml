@@ -1,0 +1,97 @@
+﻿@{
+    Layout = "/Views/Shared/_ExamLayout.cshtml";
+}
+
+@model Instructor
+@{
+    ViewData["Title"] = "Add";
+}
+
+<style>
+    .form {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f5f5f5;
+    }
+
+        .form h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 8px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    .text-danger {
+        color: #dc3545;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: #fff;
+        padding: 8px 16px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+</style>
+
+<h1>Add new instructor</h1>
+
+<form method="post" class="form">
+    <div class="form-group">
+        <label asp-for="Name" class="form-label">Name</label>
+        <input asp-for="Name" class="form-control">
+        <span class="text-danger" asp-validation-for="Name"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Age" class="form-label">Age</label>
+        <input asp-for="Age" class="form-control">
+        <span class="text-danger" asp-validation-for="Age"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Email" class="form-label">Email</label>
+        <input asp-for="Email" class="form-control">
+        <span class="text-danger" asp-validation-for="Email"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Password" class="form-label">Password</label>
+        <input asp-for="Password" class="form-control">
+        <span class="text-danger" asp-validation-for="Password"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ConfirmPassword" class="form-label">Confirm Password</label>
+        <input asp-for="ConfirmPassword" class="form-control">
+        <span class="text-danger" asp-validation-for="ConfirmPassword"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Course" class="form-label">Course</label>
+        <input asp-for="Course" class="form-control">
+        <span class="text-danger" asp-validation-for="Course"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

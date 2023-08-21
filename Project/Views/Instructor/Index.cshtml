@@ -1,0 +1,55 @@
+﻿@{
+    Layout = "~/Views/Shared/_InstructorLayout.cshtml";
+}
+@model List<Instructor>
+@{
+    ViewData["Title"] = "Index";
+    int index = 1;
+}
+
+<h1>Instructor</h1>
+<a href="/valid/Addv" class="btn btn-outline-primary ">Add new Instructor</a>
+
+
+
+
+<table class="table table-info table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Instructor Name </th>
+            <th scope="col">Instructor Age </th>
+            <th scope="col">Instructor Email </th>
+            <th scope="col">Course </th>
+            <th scope="col"> Handiling </th>
+           
+
+
+        </tr>
+    </thead>
+    @foreach(var i in Model){
+    <tbody>
+
+        <tr>
+                <th scope="row"> @(index++)</th>
+            <td>@i.Name</td>
+            <td>@i.Age</td>
+            <td>@i.Email</td>
+                <td>@i.Course</td>
+                <td>
+                    <a href="/Instructor/edit/@i.ID" class="btn btn-outline-primary ">Edit</a>
+                    <a href="/Instructor/delete/@i.ID" class="btn btn-outline-primary ">Delete</a>
+                    
+                </td>
+               
+
+                
+
+
+        </tr>
+
+    </tbody>
+    }
+</table>
+
+

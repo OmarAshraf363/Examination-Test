@@ -1,0 +1,146 @@
+﻿@{
+    Layout = "/Views/Shared/_ExamLayout.cshtml";
+}
+
+@model Exam
+@{
+    ViewData["Title"] = "Exam";
+}
+<div id="timer"></div>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewData["Title"]</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .question-container {
+            background-color: lightgoldenrodyellow;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .question-text {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .form-check-label {
+            font-size: 16px;
+        }
+
+        .submit-button {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+            .submit-button button {
+                padding: 10px 20px;
+                font-size: 16px;
+                background-color: #4caf50;
+                color: #fff;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+                .submit-button button:hover {
+                    background-color: #45a049;
+                }
+    </style>
+    <script>
+        // تعيين وقت الامتحان بالثواني
+        var examTime = 60 * @Model.Duration; // على سبيل المثال، 15 دقيقة
+
+        // استهداف عنصر العرض
+        var timerElement = document.getElementById('timer');
+
+        // تحديث التوقيت كل ثانية
+        var timer = setInterval(function () {
+            // تحويل الوقت إلى دقائق وثواني
+            var minutes = Math.floor(examTime / 60);
+            var seconds = examTime % 60;
+
+            // عرض التوقيت في العنصر المحدد
+            timerElement.innerHTML = 'Time Remaining: ' + minutes + 'm ' + seconds + 's';
+
+            // تفحص إذا انتهى الوقت
+            if (examTime <= 0) {
+                clearInterval(timer); // إيقاف التوقيت
+                timerElement.innerHTML = 'Time is up!'; // عرض رسالة "انتهى الوقت"
+                document.forms[0].submit(); // إرسال الامتحان تلقائيًا
+            }
+
+            // تخفيض الوقت بثانية واحدة
+            examTime--;
+        }, 1000); 
+
+ 
+        // تعطيل زر إعادة تحميل الصفحة عند الضغط عليه
+        document.querySelector('button[type="submit"]').addEventListener('click', function (event) {
+            event.preventDefault();
+        });
+
+        // تعطيل زر الرجوع في المتصفح عند استخدامه للخروج من الصفحة
+        window.onbeforeunload = function () {
+            return "هل أنت متأكد أنك تريد مغادرة الصفحة؟ لن تتمكن من العودة لإكمال الامتحان.";
+        };
+  
+        // تعطيل زر الرجوع في المتصفح عند استخدامه للخروج من الصفحة
+        window.onbeforeunload = function () {
+            return "هل أنت متأكد أنك تريد مغادرة الصفحة؟ لن تتمكن من العودة لإكمال الامتحان.";
+        };
+  
+        // تعطيل زر إعادة تحميل الصفحة عند الضغط عليه
+        document.querySelector('button[type="submit"]').addEventListener('click', function (event) {
+            event.preventDefault();
+        });
+    </script>
+
+</head>
+<body>
+    <h1>@ViewData["Title"]</h1>
+    <hr />
+    <form asp-controller="Exam" asp-action="attend" asp-route-ID="@Context.Session.GetInt32("UserID")" method="post">
+    @for (int i = 0; i < Model.Questions.Count; i++)
+    {
+        <div class="question-container">
+            
+            <div class="question-text">@Model.Questions[i].Body</div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="question-@Model.Questions[i].ID" id="question-@Model.Questions[i].Answer-true" value="true">
+                <label class="form-check-label" for="question-@Model.Questions[i].Answer-true">
+                    True
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="question-@Model.Questions[i].ID" id="question-@Model.Questions[i].Answer-false" value="false">
+                <label class="form-check-label" for="question-@Model.Questions[i].Answer-false">
+                    False
+                </label>
+            </div>
+
+        </div>
+    }
+
+
+    <div class="submit-button">
+        <button type="submit">Submit Exam</button>
+    </div>
+    </form>
+</body>
+</html>
